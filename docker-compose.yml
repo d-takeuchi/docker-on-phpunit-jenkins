@@ -1,0 +1,18 @@
+version: '3'
+services:
+  php-apache:
+    container_name : php-apache
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./src/backend:/var/www/html
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins:latest
+    ports:
+      - 8080:8080
+    volumes:
+      - ./jenkins_home:/var/jenkins_home      
